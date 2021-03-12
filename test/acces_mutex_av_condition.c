@@ -40,6 +40,11 @@ void ft_fork_nb(t_phy *s)
 	s->time[0] = s->time[0] / 2;
 }
 
+void	ft_bzero(void *s, size_t n)
+{
+	while (n--)
+		*((unsigned char*)s++) = 0;
+}
 
 void init_stuc(t_phy *s)
 {
@@ -55,7 +60,8 @@ int main(int ac, char **av)
 	int i = 0;
 	t_phy s;
 
-	init_stuc(&s);
+	// init_stuc(&s);
+	ft_bzero(&s, sizeof(s));
 	if (!(ac == 5 || ac == 6))
 	{
 		write(1, "Wrong arg number\n", 17);

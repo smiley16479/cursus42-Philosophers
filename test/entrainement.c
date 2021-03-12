@@ -11,9 +11,9 @@ typedef struct s_struct {
 } t_s;
 
 
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER; /* Création du mutex */
 pthread_cond_t condition = PTHREAD_COND_INITIALIZER; /* Création de la condition */
 pthread_cond_t condition1 = PTHREAD_COND_INITIALIZER; /* Création de la condition */
-pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER; /* Création du mutex */
 
 
 void *ft_thread_1(void *s)
