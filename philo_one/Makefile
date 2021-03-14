@@ -6,7 +6,7 @@
 #    By: adtheus <adtheus@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:20:17 by adtheus           #+#    #+#              #
-#    Updated: 2021/03/12 17:33:12 by adtheus          ###   ########.fr        #
+#    Updated: 2021/03/12 21:44:57 by adtheus          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,11 @@ SRC_DIR = .
 OBJ_DIR = obj
 
 SRC = 			main.c \
-				phisiology.c \
-				tools.c
+				phisiology.c
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 
-CFLAG = -g3 -fsanitize=address #-Wall -Wextra -Werror 
+CFLAG = #-g3 -fsanitize=address #-Wall -Wextra -Werror 
 
 LFLAG = -lpthread
 
