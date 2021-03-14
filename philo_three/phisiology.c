@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phisiology.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adtheus <adtheus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 19:20:13 by adtheus           #+#    #+#             */
-/*   Updated: 2021/03/14 15:04:14 by adtheus          ###   ########.fr       */
+/*   Updated: 2021/03/14 17:45:06 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,16 @@
 
 float	get_time(struct timeval *start)
 {
-	struct timeval end;
-	float time_taken;
+	struct timeval	end;
+	float			time_taken;
 
 	gettimeofday(&end, NULL);
 	time_taken = (end.tv_sec - start->tv_sec) * 1e6;
 	time_taken = (time_taken + (end.tv_usec - start->tv_usec)) * 1e-3;
-	// printf("\ntime_taken1 : %.0f\n", time_taken);
-	return(time_taken);
+	return (time_taken);
 }
 
-int	is_phy_dead_or_satiated(t_phy *p)
+int		is(t_phy *p)
 {
 	float	now;
 
@@ -37,7 +36,7 @@ int	is_phy_dead_or_satiated(t_phy *p)
 		now = get_time(p->start);
 		if ((now - p->last_lunch) > (*p->data)[1] / 1000)
 		{
-			printf("%5.0f %d died\n", (now - p->last_lunch), p->whoami + 1);
+			printf("%5.0f %d died\n", now, p->whoami + 1);
 			kill_process_n_destroy(p->d);
 		}
 		if ((*p->data)[4] != -1)
@@ -50,10 +49,10 @@ int	is_phy_dead_or_satiated(t_phy *p)
 	return (0);
 }
 
-int print_status(char act, t_phy *p)
+int		print_status(char act, t_phy *p)
 {
 	if (p->time_to_stop)
-		exit (1);
+		exit(1);
 	if (act == 1)
 		printf("%5.0f %d has taken a fork\n",
 		get_time(p->start), p->whoami + 1);
@@ -66,9 +65,9 @@ int print_status(char act, t_phy *p)
 	return (0);
 }
 
-void* process_phy (t_phy *p)
+void	*process_phy(t_phy *p)
 {
-	while(1)
+	while (1)
 	{
 		sem_wait(p->sem_l);
 		sem_wait(p->sem);
@@ -82,8 +81,7 @@ void* process_phy (t_phy *p)
 			break ;
 		p->lunch_nb++;
 		usleep((*p->data)[2]);
-		p->last_lunch = get_time(p->start); // 
-		// printf("lst_lunch de %d: %f ->ptr %p\n",p->whoami + 1, (p->last_lunch = get_time(p->start)), &p->last_lunch );
+		p->last_lunch = get_time(p->start);
 		sem_post(p->sem);
 		sem_post(p->sem);
 		if (print_status(3, p))

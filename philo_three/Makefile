@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adtheus <adtheus@student.42.fr>            +#+  +:+       +#+         #
+#    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 23:20:17 by adtheus           #+#    #+#              #
-#    Updated: 2021/03/13 12:33:48 by adtheus          ###   ########.fr        #
+#    Updated: 2021/03/14 17:46:38 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC = 			main.c \
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 
-CFLAG = #-g3 -fsanitize=address #-Wall -Wextra -Werror 
+CFLAG = -Wall -Wextra -Werror #-g3 -fsanitize=address #
 
 LFLAG = -lpthread
 
